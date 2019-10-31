@@ -10,9 +10,6 @@
     "email": "ruben@logic-labs.nl"
   },
   "scripts": {},
-  "files": [
-    "js"
-  ],
   "main": "index.html",
   "repository": {
     "type": "git",
