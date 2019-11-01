@@ -242,7 +242,7 @@ export class ProgramManager {
 						let res = programInfo.attribLocations[attribute] = this.gl.getAttribLocation(shaderProgram, attribute);
 						if (res === -1) {
 							console.error("Missing attribute location", attribute, vertexShaderSource, this.keyToJson(key));
-							debugger;
+							// debugger;
 						}
 					}
 				}
@@ -252,7 +252,7 @@ export class ProgramManager {
 						let res = programInfo.uniformLocations[uniform] = this.gl.getUniformLocation(shaderProgram, uniform);
 						if (res === null) {
 							console.error("Missing uniform location", uniform, vertexShaderSource, this.keyToJson(key));
-							debugger;
+							// debugger;
 						}
 					}
 				}
@@ -262,7 +262,7 @@ export class ProgramManager {
 							let res = programInfo.uniformBlocks[uniformBlock] = this.gl.getUniformBlockIndex(shaderProgram, uniformBlock);
 							if (res == -1) {
 								console.error("Missing uniformBlock '" + uniformBlock + "' = " + programInfo.uniformBlocks[uniformBlock], this.keyToJson(key));
-								debugger;
+								// debugger;
 							} else {
 								this.gl.uniformBlockBinding(shaderProgram, programInfo.uniformBlocks[uniformBlock], 0);
 							}

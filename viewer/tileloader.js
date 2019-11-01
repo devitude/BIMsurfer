@@ -51,7 +51,7 @@ export class TileLoader {
 					var nrObjects = tile.nrObjects;
 					if (nrObjects == 0) {
 						// Should not happen
-						debugger;
+						// debugger;
 						this.viewer.stats.inc("Tiling", "Empty");
 						continue;
 					}

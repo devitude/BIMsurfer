@@ -20,7 +20,7 @@ export class FrozenBufferSet extends AbstractBufferSet {
         super(viewer);
 
         if (lineIndexBuffer == null) {
-        	debugger;
+        // 	debugger;
         }
         
         if (originalBuffer) {

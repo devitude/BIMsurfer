@@ -211,31 +211,31 @@ class OctreeNode {
 	}
 	
 	get center() {
-		debugger;
+		// debugger;
 	}
 	
 	get normalizedMatrix() {
-		debugger;
+		// debugger;
 	}
 	
 	get normalizedMinVector() {
-		debugger;
+		// debugger;
 	}
 	
 	get normalizedMaxVector() {
-		debugger;
+		// debugger;
 	}
 	
 	get radius() {
-		debugger;
+		// debugger;
 	}
 	
 	get minmax() {
-		debugger;
+		// debugger;
 	}
 	
 	get matrix() {
-		debugger;
+		// debugger;
 	}
 }
 

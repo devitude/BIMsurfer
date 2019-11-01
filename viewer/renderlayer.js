@@ -47,7 +47,7 @@ export class RenderLayer {
 
 	createGeometry(loaderId, roid, croid, geometryId, positions, normals, colors, color, indices, lineIndices, hasTransparency, reused) {
 		if (lineIndices == null) {
-			debugger;
+			// debugger;
 		}
 		var bytesUsed = Utils.calculateBytesUsed(this.settings, positions.length, colors.length, indices.length, lineIndices ? lineIndices.length : 0, normals.length);
 		var geometry = {
@@ -274,11 +274,11 @@ export class RenderLayer {
 					buffer.lineIndices.set(index, buffer.lineIndicesIndex);
 					buffer.lineIndicesIndex += 3;
 				} catch (e) {
-					debugger;
+					// debugger;
 				}
 			}
 		} catch (e) {
-			debugger;
+			// debugger;
 			console.error(e);
 			console.log(sizes);
 			console.log(buffer);
@@ -329,7 +329,7 @@ export class RenderLayer {
 	
 	addGeometryReusable(geometry, loader, gpuBufferManager) {
 		if (geometry.lineIndices == null) {
-			debugger;
+			// debugger;
 		}
 		var programInfo = this.viewer.programManager.getProgram(this.viewer.programManager.createKey(true, false));
 		var lineProgramInfo = this.viewer.programManager.getProgram(this.viewer.programManager.createKey(true, false, true));
@@ -688,7 +688,7 @@ export class RenderLayer {
 				: null;
 			const indexBuffer = Utils.createIndexBuffer(this.gl, buffer.indices, buffer.indicesIndex);
 			if (buffer.lineIndices == null) {
-				debugger;
+				// debugger;
 			}
 			const lineIndexBuffer = buffer.lineIndices ? Utils.createLineIndexBuffer(this.gl, buffer.indices, buffer.indicesIndex) : null;
 

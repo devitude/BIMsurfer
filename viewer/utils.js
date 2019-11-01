@@ -137,13 +137,13 @@ export class Utils {
 		// TODO add a general DEBUGGING flag somewhere to avoid doing unneeded checks
 		if (targetGlBuffer.writePosition + size > targetGlBuffer.byteSize) {
 			console.error("Buffer overflow by", (targetGlBuffer.writePosition + size) - targetGlBuffer.byteSize);
-			debugger;
+			// debugger;
 		}
 		
 		try {
 			gl.bufferSubData(targetGlBuffer.gl_type, targetGlBuffer.writePosition, data, pos, size);
 		} catch (e) {
-			debugger;
+			// debugger;
 		}
 		targetGlBuffer.writePosition += byteCount;
 	}

@@ -145,7 +145,7 @@ export class AbstractBufferSet {
         gl.getBufferSubData(gl.ELEMENT_ARRAY_BUFFER, bounds.startIndex * 4, this.batchGpuBuffers.indices, 0, bounds.endIndex - bounds.startIndex);
         
         if (this.lineIndexBuffer == null) {
-        	debugger;
+        	// debugger;
         }
         gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.lineIndexBuffer);
         gl.getBufferSubData(gl.ELEMENT_ARRAY_BUFFER, bounds.startLineIndex * 4, this.batchGpuBuffers.lineIndices, 0, bounds.endLineIndex - bounds.startLineIndex);
@@ -357,7 +357,7 @@ export class AbstractBufferSet {
     			bounds.endLineIndex = range[3];
     		}
     		if (bounds.startLineIndex > bounds.endLineIndex) {
-    			debugger;
+    			// debugger;
     		}
     		if (bounds.minLineIndex == null || idx.minLineIndex < bounds.minLineIndex) {
     			bounds.minLineIndex = idx.minLineIndex;
