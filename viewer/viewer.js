@@ -827,16 +827,16 @@ export class Viewer {
             if (params.select !== false) {
                 if (!params.shiftKey) {
                 	if (this.selectedElements.size > 0) {
-                		this.eventHandler.fire("selection_state_changed", this.selectedElements, false);
+                		this.eventHandler.fire("selection_state_changed", this.selectedElements, false, viewObject);
                 		this.selectedElements.clear();
                 	}
                 }
                 if (this.selectedElements.has(uniqueId)) {
                     this.selectedElements.delete(uniqueId);
-                    this.eventHandler.fire("selection_state_changed", [uniqueId], false);
+                    this.eventHandler.fire("selection_state_changed", [uniqueId], false, viewObject);
                 } else {
                     this.addToSelection(uniqueId);
-                    this.eventHandler.fire("selection_state_changed", [uniqueId], true);
+                    this.eventHandler.fire("selection_state_changed", [uniqueId], true, viewObject);
                 }
             }
             return {object: viewObject, normal: normal, coordinates: tmp_unproject, depth: depth};

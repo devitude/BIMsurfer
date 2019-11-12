@@ -107,7 +107,8 @@ export class RenderLayer {
             type: type,
 			aabb: aabb,
 			globalizedAabb: globalizedAabb,
-			uniqueId: uniqueId
+			uniqueId: uniqueId,
+			roid: roid
 		};
 		
 		if (node) {
