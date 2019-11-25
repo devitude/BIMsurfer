@@ -179,7 +179,8 @@ export class Viewer {
         		if (evt.key === 'H') {
         			this.resetVisibility();
         		} else if (evt.key === 'h') {
-        			this.setVisibility(this.selectedElements, false, false);
+                    this.setVisibility(this.selectedElements, false, false);
+                    this.eventHandler.fire("selection_state_changed", this.selectedElements, false);
         			this.selectedElements.clear();
         		} else if (evt.key === 'C') {
         			this.resetColors();
