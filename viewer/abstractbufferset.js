@@ -744,4 +744,29 @@ export class AbstractBufferSet {
 
 		return oldColors;
 	}
+
+	getColor(gl, uniqueId) {
+		var oldColors;
+
+		const idxs = this.uniqueIdToIndex.get(uniqueId);
+		if (idxs == null) {
+			return;
+		}
+		for (var idx of idxs) {
+			let [offset, length] = [idx.color, idx.colorLength];
+
+			// Assumes there is just one index pair, this is for now always the case.
+			oldColors = new window[this.colorBuffer.js_type](length);
+
+			gl.bindBuffer(gl.ARRAY_BUFFER, this.colorBuffer);
+			let bounds = this.batchGpuBuffers.bounds;
+			let gpu_data = this.batchGpuBuffers.colorBuffer;
+			// @todo this can probably be a combination of subarray() and set()
+			for (let j=0; j<length; j++) {
+				oldColors[j] = gpu_data[offset - (bounds.minIndex * 4) + j];
+    		}
+		}
+
+		return oldColors
+	}
 }

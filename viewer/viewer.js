@@ -321,7 +321,30 @@ export class Viewer {
 		}
 		return bufferSetsToUpdate;
     }
-    
+
+    getColor(elem) {
+        const uniqueId = elem.uniqueId
+
+        const bufferSets = this.uniqueIdToBufferSet.get(uniqueId);
+        if (bufferSets == null) {
+            return false
+        }
+
+        const bufferSet = bufferSets[0]
+
+        let idRanges = bufferSet.getIdRanges([uniqueId]);
+        let bounds = bufferSet.getBounds(idRanges);
+
+        let color = false
+        bufferSet.batchGpuRead(this.gl, ["positionBuffer", "normalBuffer", "colorBuffer", "pickColorBuffer"], bounds, () => {
+            const colorBuffer = bufferSet.getColor(this.gl, uniqueId)
+            if (colorBuffer && colorBuffer.length >= 4) {
+                color = [colorBuffer[0], colorBuffer[1], colorBuffer[2], colorBuffer[3]]
+            }
+        })
+        return color
+    }
+
     setColor(elems, clr) {
         let aug = this.idAugmentationFunction;
 		let promise = this.invisibleElements.batch(() => {
