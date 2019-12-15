@@ -217,9 +217,6 @@ export class CameraControl {
                         canvasPos: this.mousePos,
                         shiftKey: e.shiftKey
                     });
-                    if (viewObject && viewObject.object) {
-                        console.log("Picked", viewObject.object);
-                    }
                     this.viewer.drawScene();
                 }
                 break;
