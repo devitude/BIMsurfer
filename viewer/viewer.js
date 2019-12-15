@@ -996,8 +996,17 @@ export class Viewer {
         this.setVisibility(this.invisibleElements.keys(), true, false);
         this.dirty = 2;
     }
-	
+
+    resetSectionPlane() {
+        this.sectionPlaneValues.set(this.sectionPlaneValuesDisabled);
+        this.sectionPlaneValues2.set(this.sectionPlaneValues);
+    }
+
     addSelectionListener(listener) {
        this.eventHandler.on("selection_state_changed", listener.handler);
+    }
+
+    setPermanentSectionPlaneOn(turnOn) {
+        this.cameraControl.setPermanentSectionPlaneOn(turnOn)
     }
 }

@@ -12,7 +12,7 @@ export const DRAG_SECTION = 0xfe03;
 export class CameraControl {
 
     constructor(viewer) {
-
+        this.permanentSectionPlaneOn = false;
         this.viewer = viewer;
 
         this.mousePanSensitivity = 0.5;
@@ -145,8 +145,8 @@ export class CameraControl {
         this.mouseDownPos.set(this.mousePos);
 
         switch (e.which) {
-            case 1:                
-                if (e.ctrlKey) {
+            case 1:
+                if (e.ctrlKey || this.permanentSectionPlaneOn) {
                     this.mouseDownTime = 0;
                     if (this.viewer.enableSectionPlane({canvasPos:[this.lastX, this.lastY]})) {
                         this.dragMode = DRAG_SECTION;
@@ -256,11 +256,11 @@ export class CameraControl {
         if (!this.over) {
             return;
         }
-        if (this.mouseDown || e.ctrlKey) {
+        if (this.mouseDown || e.ctrlKey || this.permanentSectionPlaneOn) {
             this.getCanvasPosFromEvent(e, this.mousePos);
             if (this.dragMode == DRAG_SECTION) {
                 this.viewer.moveSectionPlane({canvasPos: this.mousePos});
-            } else if (e.ctrlKey) {
+            } else if (e.ctrlKey || this.permanentSectionPlaneOn) {
                 this.viewer.positionSectionPlaneWidget({canvasPos: this.mousePos});
             } else {
                 var x = this.mousePos[0];
@@ -317,5 +317,16 @@ export class CameraControl {
         canvas.removeEventListener("mouseleave", this.canvasMouseLeaveHandler);
         canvas.removeEventListener("mousemove", this.canvasMouseMoveHandler);
         canvas.removeEventListener("wheel", this.canvasMouseWheelHandler);
+    }
+
+    setPermanentSectionPlaneOn(turnOn) {
+        if (turnOn == this.permanentSectionPlaneOn) {
+            return
+        }
+
+        this.permanentSectionPlaneOn = turnOn
+        if (!this.permanentSectionPlaneOn) {
+            this.viewer.removeSectionPlaneWidget();
+        }
     }
 }
