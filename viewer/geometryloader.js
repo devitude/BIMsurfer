@@ -18,6 +18,8 @@ const v4 = vec4.create();
 
 export class GeometryLoader {
 	constructor(loaderId, renderLayer, loaderSettings, vertexQuantizationMatrices, stats, settings, geometryCache, gpuBufferManager, usePreparedBuffers) {
+    this.renderProgressReported = false;
+
 		this.renderLayer = renderLayer;
 		this.settings = settings;
 		
@@ -361,7 +363,8 @@ export class GeometryLoader {
 				this.preparedBuffer = null;
 			}
 		}
-		this.renderLayer.incLoadedPrimitives(totalNrIndices / 3, totalNrLineIndices / 2);
+    this.renderLayer.incLoadedPrimitives(totalNrIndices / 3, totalNrLineIndices / 2);
+    this.renderProgressReported = true
 
 		stream.align8();
 
