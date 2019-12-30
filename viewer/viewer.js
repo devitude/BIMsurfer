@@ -325,6 +325,23 @@ export class Viewer {
     getColor(elem) {
         const uniqueId = elem.uniqueId
 
+
+        if (this.hiddenDueToSetColor.has(uniqueId)) {
+          let buffer = this.hiddenDueToSetColor.get(uniqueId);
+          if (buffer instanceof FrozenBufferSet) {
+            const gl = this.gl
+            let cBuffer = buffer.colorBuffer;
+            let gpu_data = new window[cBuffer.js_type](cBuffer.N);
+
+            gl.bindBuffer(gl.ARRAY_BUFFER, cBuffer);
+            gl.getBufferSubData(gl.ARRAY_BUFFER, 0, gpu_data, 0, gpu_data.length);
+
+            if (gpu_data.length >= 4) {
+              return [gpu_data[0], gpu_data[1], gpu_data[2], gpu_data[3]];
+            }
+          }
+        }
+
         const bufferSets = this.uniqueIdToBufferSet.get(uniqueId);
         if (bufferSets == null) {
             return false
