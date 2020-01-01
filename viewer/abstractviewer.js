@@ -315,6 +315,10 @@ export class AbstractViewer {
 	
 	addSelectionListener(selectionListener) {
 		this.viewer.addSelectionListener(selectionListener);
-	}
+  }
+  
+  addPermanentSectionPlaneOnListener(listener) {
+    this.viewer.addPermanentSectionPlaneOnListener(listener)
+  }
 
 }

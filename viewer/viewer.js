@@ -1023,7 +1023,13 @@ export class Viewer {
        this.eventHandler.on("selection_state_changed", listener.handler);
     }
 
+    addPermanentSectionPlaneOnListener(listener) {
+      this.eventHandler.on('permanent_section_plane_on_changed', listener.handler)
+    }
+
     setPermanentSectionPlaneOn(turnOn) {
         this.cameraControl.setPermanentSectionPlaneOn(turnOn)
+        
+        this.eventHandler.fire('permanent_section_plane_on_changed', turnOn)
     }
 }

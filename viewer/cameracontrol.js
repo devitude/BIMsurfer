@@ -210,6 +210,13 @@ export class CameraControl {
         let dt = e.timeStamp - this.mouseDownTime;
         this.mouseDown = false;
 
+        // on mouse up disable permanentsectionplane
+        if (this.permanentSectionPlaneOn) {
+          this.viewer.setPermanentSectionPlaneOn(false)
+          e.preventDefault()
+          return
+        }
+
         switch (e.which) {
             case 1:
             	if (dt < 500. && this.closeEnoughCanvas(this.mouseDownPos, this.mousePos)) {
