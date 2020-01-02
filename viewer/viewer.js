@@ -893,10 +893,14 @@ export class Viewer {
 
     addToSelection(uniqueId) {
     	this.selectedElements.add(uniqueId);
-    	let bufferSets = this.uniqueIdToBufferSet.get(uniqueId);
-    	for (var bufferSet of bufferSets) {
-    		bufferSet.generateLines(uniqueId, this.gl);
-    	}
+      let bufferSets = this.uniqueIdToBufferSet.get(uniqueId);
+      if (bufferSets) {
+        for (var bufferSet of bufferSets) {
+          bufferSet.generateLines(uniqueId, this.gl);
+        }
+      } else {
+        console.error('Failed to get bufferset for id: ', uniqueId)
+      }
     }
     
     getPickColorForPickId(pickId) {
