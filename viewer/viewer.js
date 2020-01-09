@@ -323,8 +323,16 @@ export class Viewer {
     }
 
     getColor(elem) {
-        const uniqueId = elem.uniqueId
+        let uniqueId = null
+        if (isNaN(elem)) {
+          uniqueId = elem.uniqueId
+        } else {
+          uniqueId = parseInt(elem)
+        }
 
+        if (typeof elem === 'undefined' || elem === null) {
+          return false
+        }
 
         if (this.hiddenDueToSetColor.has(uniqueId)) {
           let buffer = this.hiddenDueToSetColor.get(uniqueId);
